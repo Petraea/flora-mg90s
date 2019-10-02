@@ -40,10 +40,10 @@ module fixknuckle() {
 //#rotate([90,0,0])translate([4,-187,-17])import("Flora_Hip.stl");
 difference() {
 hull() {for (x=[1,-1]) {for (y=[1,-1]) {
-translate([10*x+1,11*y,0])cylinder(h=18,r=10,center=true);
+translate([(22-10)*x+1,(21-10)*y,0])cylinder(h=18,r=10,center=true);
 }}}
 hull() {for (x=[1,-1]) {for (y=[1,-1]) {
-translate([9*x-1,10*y,0])cylinder(h=26,r=6,center=true);
+translate([(17-6)*x-1,(16-6)*y,0])cylinder(h=26,r=6,center=true);
 }}}
 translate([-15,0,0])difference() {
 cube([30,50,30],center=true);
@@ -57,11 +57,10 @@ translate([-5,15,0])rotate([0,90,0])cylinder(r=2,h=10,center=true);
 
 //Servo socket
 translate([0,-15,0]) rotate([90,0,0]) {
-cylinder(r=2.4,h=10,center=true);
-translate([0,0,3])rotate([0,-135,0])cylinder(r=2.4,h=10);
+cylinder(r=2.2,h=10,center=true);
+translate([0,0,3])rotate([0,-135,0])cylinder(r=2.2,h=10);
 cylinder(r=2.3,h=10,center=true);
 cylinder(r=1.5,h=20,center=true);
-translate([0,0,10])cylinder(r=2.3,h=10,center=true);
 }
 
 
@@ -69,11 +68,12 @@ translate([0,0,10])cylinder(r=2.3,h=10,center=true);
 translate([20,0,0]) rotate([0,90,0]) cylinder(r=5,h=20,center=true);
 
 // Pair lock
-translate([24,0,0])cube([10,18.5,20],center=true);
+translate([26,0,0])cube([10,18.5,20],center=true);
 }
 }
 
 //rotate([90,0,180])translate([0,0,-11])fixleg();
-fixbody();
-//fixknuckle();
+//fixbody();
+fixknuckle();
 //rotate([90,0,180])translate([-38,0,0])fixknuckle();
+$fn=20;
