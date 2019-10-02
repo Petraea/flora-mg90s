@@ -37,7 +37,6 @@ translate([0,0,19])rotate([180,0,90+90*x])translate([-8,0,0])cube([10,12.6,26],c
 }
 
 module fixknuckle() {
-//#rotate([90,0,0])translate([4,-187,-17])import("Flora_Hip.stl");
 difference() {
 hull() {for (x=[1,-1]) {for (y=[1,-1]) {
 translate([(22-10)*x+1,(21-10)*y,0])cylinder(h=18,r=10,center=true);
@@ -72,8 +71,49 @@ translate([26,0,0])cube([10,18.5,20],center=true);
 }
 }
 
+module 18650_holder() {
+translate([0,0,10])cube([21.2,77.6,20],center=true);
+}
+
+module fixbattery() {
+union (){
+difference () {
+hull() {for (x=[1,-1]) {for (y=[1,-1]) {for (z=[0,1]) {
+translate([25.5*x,38.8*y,20*z])sphere(r=4);
+}}}}
+//Battery space
+translate([0,0,25])cube([60,90,10],center=true);
+translate([0,0,11])cube([51,77.6,22],center=true);
+
+//Fancies - slots
+for (x=[1,-1]) {for (y=[1,-1]) {
+translate([12*x,20*y,0]) hull() {for (q=[1,-1]) {
+translate([8*q,0,0])cylinder(r=2,h=10,center=true);
+}}
+}}
+//Fancies - holes
+for (x=[1,0,-1]) {
+translate([20*x,0,0])cylinder(r=5,h=10,center=true);
+}
+cube([40,5,10],center=true);
+//Fancies - triangles
+for (l=[[11,-5],[0,13.5],[-11,-5]]) {
+translate([l[0],l[1],-5])linear_extrude(10) polygon([[0,0],[-4.5,-7.5],[4.5,-7.5]]);
+}
+}
+//Attaching pegs
+for (x=[0,1]) {for (y=[0,1]) {mirror([x,0,0]) {mirror([0,y,0]) {
+translate([10,40.175,20]) hull() {
+translate([-5.35,0,1.5])cylinder(r=4.45/2,h=3,center=true);
+translate([7,0,1.5])cube([4,4.45,3],center=true);
+}
+}}}}
+}
+}
+
 //rotate([90,0,180])translate([0,0,-11])fixleg();
 //fixbody();
-fixknuckle();
+//fixknuckle();
 //rotate([90,0,180])translate([-38,0,0])fixknuckle();
+fixbattery();
 $fn=20;
