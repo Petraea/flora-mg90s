@@ -78,7 +78,7 @@ translate([0,0,10])cube([21.2,77.6,20],center=true);
 module fixbattery() {
 union (){
 difference () {
-hull() {for (x=[1,-1]) {for (y=[1,-1]) {for (z=[0,1]) {
+hull() {for (x=[1,-1]) {for (y=[1,-1]) {for (z=[0.125,1]) {
 translate([25.5*x,38.8*y,20*z])sphere(r=4);
 }}}}
 //Battery space
