@@ -32,8 +32,6 @@ translate([0,0,19])rotate([180,0,90+90*x])translate([-8,0,0])cube([10,12.6,26],c
 }
 }}
 }
-//rotate([90,0,0])translate([-77,-175.25,-8.5])import("Flora_Cover.stl");
-//rotate([90,0,0])translate([-77,-185.25,-8.5])import("large_battery_cover.stl");
 }
 
 module fixknuckle() {
@@ -67,7 +65,7 @@ cylinder(r=1.5,h=20,center=true);
 translate([20,0,0]) rotate([0,90,0]) cylinder(r=5,h=20,center=true);
 
 // Pair lock
-translate([26,0,0])cube([10,18.5,20],center=true);
+translate([26,0,0])cube([10,18.25,20],center=true);
 }
 }
 
@@ -76,6 +74,7 @@ translate([0,0,10])cube([21.2,77.6,20],center=true);
 }
 
 module fixbattery() {
+//%translate([10,59.75,30.5])rotate([90,0,0])translate([-77,-185.25,-8.5])import("large_battery_cover.stl");
 union (){
 difference () {
 hull() {for (x=[1,-1]) {for (y=[1,-1]) {for (z=[0.125,1]) {
@@ -111,9 +110,31 @@ translate([7,0,1.5])cube([4,4.45,3],center=true);
 }
 }
 
-//rotate([90,0,180])translate([0,0,-11])fixleg();
+module mock_leg() {
+translate([-42,0,0]) {
+mirror([0,1,0])rotate([90,0,180])translate([0,0,-11])fixleg();
+fixknuckle();
+rotate([90,0,180])translate([-42,0,0])fixknuckle();
+}
+}
+
+module mock_body() {
+translate([0,59.75,0])fixbody();
+for (x=[0,1]) {for (y=[-1,0,1]) {
+mirror([x,0,0])
+translate([-40.5,40*y,11])rotate([0,0,-10*y])mock_leg();
+}}
+}
+
+module mock_all() {
+mock_body();
+translate([0,0,-20]) fixbattery();
+translate([0,59.75,0])rotate([90,0,0])translate([-77,-175.25,-8.5])import("Flora_Cover.stl");
+}
+
+mock_all();
 //fixbody();
+//fixleg();
 //fixknuckle();
-//rotate([90,0,180])translate([-38,0,0])fixknuckle();
-fixbattery();
+//fixbattery();
 $fn=20;
