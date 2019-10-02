@@ -3,7 +3,7 @@ include<servo.scad>
 module fixleg() {
 difference() {
 union() {
-translate([23.4,-16.4,0])rotate(-26.5) import("CE3_Flora_Leg.stl");
+translate([23.4,-16.4,0])rotate(-26.5) import("Flora_Leg.stl");
 translate([11,0,10.825])cube([20,12.25,21.75],center=true);
 translate([19,0,12.825])cube([4,12.25,25.75],center=true);
 }
@@ -17,7 +17,7 @@ translate([5,0,5])cube([32,12.6,5],center=true);;
 module fixbody() {
 difference() {
 union() {
-rotate([90,0,0])translate([-77,-175.25,-8.5])import("flora_body.stl");
+rotate([90,0,0])translate([-77,-175.25,-8.5])import("Flora_Body.stl");
 translate([24,-60,2.5])cube([10,100,5],center=true);
 translate([-24,-60,2.5])cube([10,100,5],center=true);
 for (x = [1,-1]) {for (y = [1,0,-1]) {
