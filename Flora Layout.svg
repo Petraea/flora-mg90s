@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Flora Layout.svg">
+   sodipodi:docname="Flora Layout.svg"
+   inkscape:export-filename="/home/dawes001/Downloads/FloraBot/Flora Layout.svg.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2">
     <marker
@@ -54,9 +57,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="335.25146"
-     inkscape:cy="233.62799"
+     inkscape:zoom="0.35"
+     inkscape:cx="186.44073"
+     inkscape:cy="422.30406"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1095,33 +1098,11 @@
        d="M 75.813231,266.2708 H 70.066937"
        id="path2030-7-4-9-4"
        inkscape:connector-curvature="0" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Willow;-inkscape-font-specification:Willow;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="74.362869"
-       y="265.59137"
-       id="text4522-9-4-4-7-8-7-7"><tspan
-         sodipodi:role="line"
-         id="tspan4520-3-7-9-11-1-7-7"
-         x="74.362869"
-         y="265.59137"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.26458332">X</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 75.508404,270.59053 H 69.76211"
        id="path2030-0-5-2-6-5"
        inkscape:connector-curvature="0" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Willow;-inkscape-font-specification:Willow;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="74.058044"
-       y="269.91104"
-       id="text4522-9-4-4-9-9-9-4-4"><tspan
-         sodipodi:role="line"
-         id="tspan4520-3-7-9-1-7-3-3-8"
-         x="74.058044"
-         y="269.91104"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:0.26458332">X</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 32.493835,290.19163 H 26.747541"
