@@ -75,14 +75,18 @@ translate([0,0,10])cube([21.2,77.6,20],center=true);
 
 module fixbattery() {
 //%translate([10,59.75,30.5])rotate([90,0,0])translate([-77,-185.25,-8.5])import("large_battery_cover.stl");
-union (){
+//translate([0,59.75,20])fixbody();
+translate([0,1,0])union (){
 difference () {
 hull() {for (x=[1,-1]) {for (y=[1,-1]) {for (z=[0.125,1]) {
-translate([25.5*x,38.8*y,20*z])sphere(r=4);
+translate([24*x,38*y,20*z])sphere(r=4);
 }}}}
 //Battery space
 translate([0,0,25])cube([60,90,10],center=true);
 translate([0,0,11])cube([51,77.6,22],center=true);
+
+//Cable space
+translate([0,0,20])cube([7,100,12],center=true);
 
 //Fancies - slots
 for (x=[1,-1]) {for (y=[1,-1]) {
@@ -102,9 +106,9 @@ translate([l[0],l[1],-5])linear_extrude(10) polygon([[0,0],[-4.5,-7.5],[4.5,-7.5
 }
 //Attaching pegs
 for (x=[0,1]) {for (y=[0,1]) {mirror([x,0,0]) {mirror([0,y,0]) {
-translate([10,40.175,20]) hull() {
-translate([-5.35,0,1.5])cylinder(r=4.45/2,h=3,center=true);
-translate([7,0,1.5])cube([4,4.45,3],center=true);
+translate([10,40,20]) hull() {
+translate([-5.35,0,2.5])cylinder(r=3.5/2,h=5,center=true);
+translate([7,0,2.5])cube([3,3.5,5],center=true);
 }
 }}}}
 }
@@ -132,9 +136,9 @@ translate([0,0,-20]) fixbattery();
 translate([0,59.75,0])rotate([90,0,0])translate([-77,-175.25,-8.5])import("Flora_Cover.stl");
 }
 
-mock_all();
+//mock_all();
 //fixbody();
 //fixleg();
 //fixknuckle();
-//fixbattery();
+fixbattery();
 $fn=20;
