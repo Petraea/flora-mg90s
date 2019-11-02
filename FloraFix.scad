@@ -14,6 +14,45 @@ translate([5,0,5])cube([32,12.6,5],center=true);;
 
 }
 
+module revleg() {
+%translate([23.4,-16.4,0])rotate(-26.5) import("Flora_Leg.stl");
+intersection() {
+union() {
+translate([7,0,11.5]) {cube([30,19,23],center=true);
+translate([0,9.5,8.5])rotate([0,90,0])cylinder(r=3,h=30,center=true);
+translate([0,9.5,-8.5])rotate([0,90,0])cylinder(r=3,h=30,center=true);
+}
+hull() {
+translate([21,7,23])sphere(r=4);
+translate([21,-11,23])sphere(r=4);
+translate([48,-30,23])sphere(r=4);
+}
+hull() {
+translate([48,-30,23])sphere(r=4);
+translate([55,-40,23/2])sphere(r=6);
+}
+hull() {
+translate([55,-40,23/2])sphere(r=6);
+translate([48,-30,5])sphere(r=4);
+}
+hull() {
+translate([48,-30,5])sphere(r=4);
+translate([21,-11,5])sphere(r=4);
+translate([21,7,5])sphere(r=4);
+}
+}
+
+//Absolute limits of motion
+union() {
+intersection() {
+translate([0,0,14])cylinder(r=70,h=28,center=true);
+translate([100,0,0])cube([200,200,200],center=true);
+}
+translate([0,0,14])cylinder(r=15,h=28,center=true);
+}
+}
+}
+
 module fixbody() {
 difference() {
 union() {
@@ -140,5 +179,6 @@ translate([0,59.75,0])rotate([90,0,0])translate([-77,-175.25,-8.5])import("Flora
 //fixbody();
 //fixleg();
 //fixknuckle();
-fixbattery();
+//fixbattery();
+revleg();
 $fn=20;
