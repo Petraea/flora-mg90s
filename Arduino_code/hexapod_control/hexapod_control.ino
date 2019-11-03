@@ -35,9 +35,12 @@
 #define BUTTON_D 5
 #define BUTTON_E 6
 #define BUTTON_F 7
-long buttonTimer = 0;
 //buttonTime controls the time required to press a button in order to make it a long-click 
-long buttonTime = 250;
+long buttonTimer = 0;
+long buttonTime = 400;
+//debounce prevents accidental double-presses
+long debounceTimer = 0;
+long debounceTime = 100;
 boolean buttonActive = false;
 boolean longPressActive = false;
 boolean ButtonA = false;
@@ -172,42 +175,42 @@ void loop() {
     }
   }  
 // If a button gets pressed...
- if(digitalRead(BUTTON_A) == LOW) {
+ if(digitalRead(BUTTON_A) == LOW && (millis() - debounceTimer > debounceTime)) {
    if (buttonActive == false) {
       buttonActive = true;
       buttonTimer = millis();
     }
     ButtonA= true;
  }
- if(digitalRead(BUTTON_B) == LOW) {
+ if(digitalRead(BUTTON_B) == LOW && (millis() - debounceTimer > debounceTime)) {
    if (buttonActive == false) {
       buttonActive = true;
       buttonTimer = millis();
     }
     ButtonB = true;
  }
- if(digitalRead(BUTTON_C) == LOW) {
+ if(digitalRead(BUTTON_C) == LOW && (millis() - debounceTimer > debounceTime)) {
    if (buttonActive == false) {
       buttonActive = true;
       buttonTimer = millis();
     }
     ButtonC = true;
  }
- if(digitalRead(BUTTON_D) == LOW) {
+ if(digitalRead(BUTTON_D) == LOW && (millis() - debounceTimer > debounceTime)) {
    if (buttonActive == false) {
       buttonActive = true;
       buttonTimer = millis();
     }
     ButtonD = true;
  }
- if(digitalRead(BUTTON_E) == LOW) {
+ if(digitalRead(BUTTON_E) == LOW && (millis() - debounceTimer > debounceTime)) {
    if (buttonActive == false) {
       buttonActive = true;
       buttonTimer = millis();
     }
     ButtonE = true;
  }
- if(digitalRead(BUTTON_F) == LOW) {
+ if(digitalRead(BUTTON_F) == LOW && (millis() - debounceTimer > debounceTime)) {
    if (buttonActive == false) {
       buttonActive = true;
       buttonTimer = millis();
@@ -218,19 +221,19 @@ void loop() {
 if ((buttonActive == true) && (millis() - buttonTimer > buttonTime) && (longPressActive == false)) {
     longPressActive = true;
     if (ButtonA == true)  {
-      Serial.println("Long Press A");  
+//      Serial.println("Long Press A");  
       CurCmd = 'W';
     } else if(ButtonB == true) {
-      Serial.println("Long Press B");  
+//      Serial.println("Long Press B");  
       CurCmd = 'T';
     } else if(ButtonC == true) {
-      Serial.println("Long Press C");  
+//      Serial.println("Long Press C");  
     } else if(ButtonD == true) {
-      Serial.println("Long Press D");  
+//      Serial.println("Long Press D");  
     } else if(ButtonE == true) {
-      Serial.println("Long Press E");  
+//      Serial.println("Long Press E");  
     } else if(ButtonF == true) {
-      Serial.println("Long Press F");  
+//      Serial.println("Long Press F");  
     }
   }
 //If a button was pressed but right now no buttons are pressed...
@@ -239,21 +242,21 @@ if ((buttonActive == true) && (digitalRead(BUTTON_A) == HIGH) &&  (digitalRead(B
       longPressActive = false;
     } else {
     if (ButtonA == true)  {
-      Serial.println("Short Press A");  
+//      Serial.println("Short Press A");  
       CurDpad='w'; 
     } else if(ButtonB == true) {
-      Serial.println("Short Press B");  
+//      Serial.println("Short Press B");  
     } else if(ButtonC == true) {
-      Serial.println("Short Press C");  
+//      Serial.println("Short Press C");  
       CurDpad = 'P';
     } else if(ButtonD == true) {
       CurDpad = 'R';
-      Serial.println("Short Press D");  
+//      Serial.println("Short Press D");  
     } else if(ButtonE == true) {
-      Serial.println("Short Press E");  
+//      Serial.println("Short Press E");  
       CurDpad = 'E';
     } else if(ButtonF == true) {
-      Serial.println("Short Press F");  
+//      Serial.println("Short Press F");  
       CurDpad = 'S';
     }
     }
@@ -264,6 +267,7 @@ if ((buttonActive == true) && (digitalRead(BUTTON_A) == HIGH) &&  (digitalRead(B
     ButtonD = false;
     ButtonE = false;
     ButtonF = false;
+    debounceTimer = millis();
   }
   
 //this should handle all keypresses, now we can get on with sending the data.
