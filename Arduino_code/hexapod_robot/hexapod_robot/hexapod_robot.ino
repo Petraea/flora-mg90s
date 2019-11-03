@@ -144,14 +144,6 @@ Adafruit_PWMServoDriver servoDriver = Adafruit_PWMServoDriver(SERVO_IIC_ADDR);
 #define SERVOMIN  (190*FreqMult) // this is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX  (540*FreqMult) // this is the 'maximum' pulse length count (out of 4096)
 
-// servo numbering
-//Left front   11 0
-//Left Middle   3 4 
-//Left Aft      7 8 
-//Right Front   1 2
-//Right Middle  5 6 
-//Right Aft    9 10
-
 // Basic functions that move legs take a bit pattern 
 // indicating which legs to move. The legs are numbered
 // clockwise starting with the right front leg being
@@ -295,14 +287,24 @@ int Dialmode;   // What's the robot potentiometer set to?
 
 #define NUM_GRIPSERVOS ((Dialmode == DIALMODE_RC_GRIPARM)?2:0)  // if we're in griparm mode there are 2 griparm servos, else there are none
 
+// servo numbering
+//Left front   11 0
+//Left Middle   3 4 
+//Left Aft      7 8 
+//Right Front   1 2
+//Right Middle  5 6 
+//Right Aft    9 10
+int hipArray[NUM_LEGS] = {11,3,7,1,5,9};
+int kneeArray[NUM_LEGS]= {0,4,8,2,6,10};
+
 void beep(int f, int t) {
   return;
-  //Serial.println("I should have beeped!");
-//  if (f > 0 && t > 0) {
-//    tone(BeeperPin, f, t);
-//  } else {
-//    noTone(BeeperPin);
-  //}
+  Serial.println("I should have beeped!");
+  if (f > 0 && t > 0) {
+    tone(BeeperPin, f, t);
+  } else {
+    noTone(BeeperPin);
+  }
 }
 
 void beep(int f) {  // if no second param is given we'll default to 250 milliseconds for the beep
@@ -389,7 +391,8 @@ void setLeg(int legmask, int hip_pos, int knee_pos, int adj, int raw, int leanan
 // this version of setHip does no processing at all (for example
 // to distinguish left from right sides)
 void setHipRaw(int leg, int pos) {
-  setServo(leg, pos);
+  //Serial.print("SH:");Serial.print(leg);Serial.print(":");Serial.println(pos);
+  setServo(hipArray[leg], pos);
 }
 
 // this version of setHip adjusts for left and right legs so
@@ -423,11 +426,11 @@ void setHip(int leg, int pos, int adj) {
 }
 
 void setKnee(int leg, int pos) {
-  // find the knee associated with leg if this is not already a knee
-  if (leg < KNEE_OFFSET) {
-    leg += KNEE_OFFSET;
+  //Serial.print("SK:");Serial.print(leg);Serial.print(":");Serial.println(pos);
+  if (leg >= LEFT_START) {
+    pos = 180 - pos;
   }
-  setServo(leg, pos);
+  setServo(kneeArray[leg], pos);
 }
 
 void setGrip(int elbow, int claw) {
@@ -2535,12 +2538,12 @@ void loop() {
 //              erase_trims();
 
 //left
-         setServo(0, 145); //left front upper
-         setServo(1, 45); 
-         setServo(4, 40); //left middle upper
-         setServo(5, 85); //left middle lower
-         setServo(8, 45); //left aft upper
-         setServo(9, 45); //left aft lower 
+         setServo(0, 0); //left front upper
+         setServo(1, 0); 
+         setServo(4, 0); //left middle upper
+         setServo(5, 0); //left middle lower
+         setServo(8, 0); //left aft upper
+         setServo(9, 0); //left aft lower 
 
 //       ServoTrim[0]=0;//left front upper
 //       ServoTrim[1]=0;//left front lower
@@ -2551,12 +2554,12 @@ void loop() {
 
 
 //right
-        setServo(2, 105); //right front upper
-        setServo(3, 90); //right front lower
-        setServo(6, 40);//right middle upper
-        setServo(7, 90); //right middle lower
-        setServo(10, 105); //right aft upper
-        setServo(11, 90); //right aft lower
+        setServo(2, 0); //right front upper
+        setServo(3, 0); //right front lower
+        setServo(6, 0);//right middle upper
+        setServo(7, 0); //right middle lower
+        setServo(10, 0); //right aft upper
+        setServo(11, 0); //right aft lower
 
 //        ServoTrim[2]=105;//right front upper
 //        ServoTrim[3]=90;//right front lower
@@ -2571,7 +2574,7 @@ void loop() {
 //        ServoTrim[10]=0;//right aft upper
 //        ServoTrim[11]=0;//right aft lower
 
-          //save_trims();
+      save_trims();
 
         break;
       case 'E': // test my legs!
