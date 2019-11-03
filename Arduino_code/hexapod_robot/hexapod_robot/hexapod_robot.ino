@@ -288,14 +288,14 @@ int Dialmode;   // What's the robot potentiometer set to?
 #define NUM_GRIPSERVOS ((Dialmode == DIALMODE_RC_GRIPARM)?2:0)  // if we're in griparm mode there are 2 griparm servos, else there are none
 
 // servo numbering
-//Left front   11 0
-//Left Middle   3 4 
-//Left Aft      7 8 
-//Right Front   1 2
-//Right Middle  5 6 
-//Right Aft    9 10
-int hipArray[NUM_LEGS] = {11,3,7,1,5,9};
-int kneeArray[NUM_LEGS]= {0,4,8,2,6,10};
+//Left front   (0)  11 0
+//Left Middle  (1)  3 4 
+//Left Aft     (2)  7 8 
+//Right Front  (5)  1 2
+//Right Middle (4)  5 6 
+//Right Aft    (3)  9 10
+int hipArray[NUM_LEGS] = {11,3,7,9,5,1};
+int kneeArray[NUM_LEGS]= {0,4,8,10,6,2};
 
 void beep(int f, int t) {
   return;
