@@ -105,6 +105,12 @@ translate([20,0,0]) rotate([0,90,0]) cylinder(r=5,h=20,center=true);
 
 // Pair lock
 translate([26,0,0])cube([10,18.25,20],center=true);
+
+//Extra screw locks
+for (y=[1,-1]) {for (z=[1,-1]) {
+translate([20,6*y,6*z])rotate([0,90,0])cylinder(h=10,r=1.5,center=true);
+}}
+
 }
 }
 
@@ -178,7 +184,7 @@ translate([0,59.75,0])rotate([90,0,0])translate([-77,-175.25,-8.5])import("Flora
 //mock_all();
 //fixbody();
 //fixleg();
-//fixknuckle();
+fixknuckle();
 //fixbattery();
-revleg();
+//revleg();
 $fn=20;
